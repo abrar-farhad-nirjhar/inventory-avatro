@@ -1,37 +1,42 @@
 
-const getAllData = () =>{
+const getAllData = () => {
     return JSON.parse(localStorage.getItem('inventory'))
 }
 
-const setItem = (data) =>{
+const setItem = (data) => {
     localStorage.setItem('inventory', JSON.stringify(data))
 }
 
-const addItem = (item) =>{
+const addItem = (item) => {
     data = getAllData()
-    if(data){
-        
+    if (data) {
+
         data.push(item)
         setItem(data)
     }
-    else{
+    else {
         data = []
         data.push(item)
         setItem(data)
     }
 }
 
-const removeItem = (id) =>{
+const removeItem = (id) => {
     data = getAllData()
-    data = data.filter((item)=>item.id!=id)
+    data = data.filter((item) => item.id != id)
     setItem(data)
 }
 
-const getLength = () =>{
-    return getAllData().length
+const getLength = () => {
+    if (getAllData()) {
+        return getAllData().length
+    }
+    else{
+        return 0
+    }
 }
 
 
-const clearDatabase = () =>{
-    localStorage.clear()
+const clearDatabase = () => {
+    localStorage.removeItem('inventory')
 }

@@ -15,6 +15,8 @@
         <a class="navbar-brand" href="#"><strong>Avatro Inventory Application</strong></a>
     </nav>
 
+    
+
     <br>
     <div class="container">
 
@@ -33,9 +35,15 @@
             <div class="shadow card" style="width: 30rem;">
                 <div class="card-body">
                     <h5 class="card-title">Search For Items</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="item_name"
+                                placeholder="Enter the name of the element...">
+                        </div>
+                    </h6>
+                    <div class="card-text" id="search_elements">
+
+                    </div>
 
                 </div>
             </div>
@@ -50,13 +58,13 @@
                 </div>
             </div>
 
-            
+
 
 
         </div>
 
         <br>
-        
+
         <table class=" shadow table">
             <thead class="thead-light">
                 <tr>
@@ -65,43 +73,108 @@
                     <th scope="col">Category</th>
                     <th scope="col">Image</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td>No items in the inventory</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+            <tbody id="data">
+                
             </tbody>
         </table>
 
+        <div id="no-data" style="color:red; text-align: center;"></div>
+        
+
         <div class="add-button">
-            <button type="button" class="btn btn-dark">Add Item</button>
+
+            <button type="button" class="btn btn-dark" id="remove">Remove All</button>
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#itemAddModal">Add Item</button>
 
         </div>
+
+
+        <!-- modal -->
+
+        <div class="modal fade" id="itemAddModal" tabindex="-1" role="dialog" aria-labelledby="itemAddModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="itemAddModalLabel">Add Item</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Name</span>
+                            </div>
+                            <input type="text" class="form-control" id="name" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Description</span>
+                            </div>
+                            <input type="text" class="form-control" id="description" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Category</span>
+                            </div>
+                            <input type="text" class="form-control" id="category" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Price</span>
+                            </div>
+                            <input type="text" class="form-control" id="price" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Image</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image"
+                                    aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add">Add Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- modal -->
+
+
+
 
     </div>
 
 
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
     <script src="scripts/items.js"></script>
     <script src="scripts/database.js"></script>
     <script src="scripts/app.js"></script>
