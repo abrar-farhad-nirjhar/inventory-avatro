@@ -36,6 +36,28 @@ const getLength = () => {
     }
 }
 
+const getCategoryNumber = () =>{
+    let data = getAllData()
+    let unique_elements = {}
+    let count = 0
+    for(let i=0; i<getLength(); i++){
+        if(!unique_elements[data[i].category.toLowerCase()]){
+            unique_elements[data[i].category.toLowerCase()] = i
+            count+=1
+        }
+    }
+    
+    return Object.keys(unique_elements).length
+    
+}
+
+const searchObjects = (term) =>{
+    let data = getAllData()
+    let result = data.filter(item=>item.name.toLowerCase().includes(term))
+    
+    return result
+}
+
 
 const clearDatabase = () => {
     localStorage.removeItem('inventory')

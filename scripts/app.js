@@ -1,11 +1,40 @@
 document.getElementById('remove').addEventListener('click', () => {
     clearDatabase()
     render()
+
 })
+
+document.getElementById('item_name').addEventListener('keyup', (e) => {
+    
+    let data = searchObjects(e.target.value)
+    let display = ""
+    if (data){
+       display =  `<ul class="list-group">`
+
+       for(let i=0; i<data.length; i++){
+           display+=`
+           <li class='list-group-item'>${data[0].name}</li>
+           `
+       }
+
+        display+=`</ul>`
+
+    }
+    else{
+        display = ""
+    }
+
+    document.getElementById('search_elements').innerHTML = display
+})
+
+
+
+getCategoryNumber()
+
+
 
 let image = null
 document.getElementById('image').addEventListener('change', (e) => {
-    console.log(event.target.files[0])
     let reader = new FileReader()
 
     reader.onload = () => {
@@ -43,7 +72,6 @@ const createItem = () => {
 
 
 
-    console.log(getAllData())
 
     render()
 
@@ -64,7 +92,9 @@ const remove = (id) => {
 
 const render = () => {
     display = ""
-    console.log(getLength())
+    document.getElementById('count').innerHTML = getLength()
+    document.getElementById('cat_count').innerHTML = getCategoryNumber()
+
     data = getAllData()
     if (data) {
         document.getElementById('no-data').innerHTML = ''
@@ -88,4 +118,6 @@ const render = () => {
 }
 
 render()
+
+
 
