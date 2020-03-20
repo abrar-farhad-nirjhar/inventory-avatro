@@ -27,6 +27,10 @@ const removeItem = (id) =>{
     setItem(data)
 }
 
+const getLength = () =>{
+    return getAllData().length
+}
+
 
 const clearDatabase = () =>{
     localStorage.clear()
